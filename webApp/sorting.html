@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sorting Alogorithmx Visualizer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./src/css/style.css">
+    </head>
+    <body>
+        <h1 class="sorting-h1">Welcome to Sorting Algorithm Visualizer</h1>
+        <header>
+            <nav class="nav-bar">
+                <div class="options">
+                    <button id="merge-sort">Merge Sort</button>
+                    <button id="quick-sort">Quick Sort</button>
+                    <button id="heap-sort">Heap Sort</button>
+                    <button id="selection-sort">Selection Sort</button>
+                    <button id="insertion-sort">Insertion Sort</button>
+                    <button id="bubble-sort">Bubble Sort</button>
+                </div>
+                <div class="slider-container">
+                    <label for="elementRange">Number of Elements:</label>
+                    <input type="range" id="elementRange" min="10" max="150" value="80", step="1">
+                    <label for="speedRange">Speed:</label>
+                    <input type="range" id="speedRange" min="1" max="5" value="4">
+                    <button id="sort">Sort</button>
+                </div>
+            </nav>
+        </header>
+        <div id="sorting-visualizer"></div>
+        <script src="./src/js/sorting.js" async></script>
+    </body>
+</html>
