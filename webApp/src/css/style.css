@@ -119,9 +119,16 @@ header {
 
 .maze {
     display: flex;
-    border: 3px solid black;
-    margin-top: 20px;
-    width: 100vw;
-    height: 100vh;
+    border: 3px solid red;
+    width: 75vw;
+    height: 75vh;
     background-color: black;
+    margin-top: -175px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
 }

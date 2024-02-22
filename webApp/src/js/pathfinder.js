@@ -41,31 +41,23 @@ class Maze {
         maze.width = this.size;
         maze.height = this.size;
         maze.style.background = "black";
-        // Set the first cell as visited
         current.visited = true;
-        // Loop through the 2d grid array and call the show method for each cell instance
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.columns; c++) {
                 let grid = this.grid;
                 grid[r][c].show(this.size, this.rows, this.columns);
             }
         }
-        // This function will assign the variable 'next' to random cell out of the current cells available neighbouting cells
+        
         let next = current.checkNeighbours();
-        // If there is a non visited neighbour cell
+        
         if (next) {
             next.visited = true;
-            // Add the current cell to the stack for backtracking
+            
             this.stack.push(current);
-            // this function will highlight the current cell on the grid. The parameter columns is passed
-            // in order to set the size of the cell
             current.highlight(this.columns);
-            // This function compares the current cell to the next cell and removes the relevant walls for each cell
             current.removeWalls(current, next);
-            // Set the nect cell to the current cell
             current = next;
-
-            // Else if there are no available neighbours start backtracking using the stack
         } else if (this.stack.length > 0) {
             let cell = this.stack.pop();
             current = cell;
@@ -212,7 +204,7 @@ class Cell {
 
 document.addEventListener('DOMContentLoaded', function() {
     function generateMaze() {
-        let maze = new Maze(500, 50, 50);
+        let maze = new Maze(250, 25, 25);
         maze.setup();
         maze.draw();
     }
