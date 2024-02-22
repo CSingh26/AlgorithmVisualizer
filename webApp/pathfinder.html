@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Pathfinder Visualizer</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./src/css/style.css">
-    </head>
-    <body>
-        <h1>Welcome to Pathfinder Visualizer</h1>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pathfinder Visualizer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+    <h1 class="pathfinder-h1">Welcome to Pathfinder Visualizer</h1>
+    <header>
+        <nav class="navbar">
+            <div class="pathfinder-sel">
+                <button id="a-star">Astar Algorithm</button>
+                <button id="dijkstra">Dijkstra</button>
+            </div>
+            <div class="btn-div">
+                <button id="maze">Generate Maze</button>
+                <button id="path">Find Path</button>
+            </div>
+        </nav>
+    </header>
+    <canvas class="maze"></canvas>
+    <script src="./src/js/pathfinder.js"></script>
+</body>
+
 </html>

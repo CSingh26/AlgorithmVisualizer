@@ -1,7 +1,12 @@
-.sorting-h1 {
+.sorting-h1,
+.pathfinder-h1 {
     text-align: center;
 }
 
+body {
+    background-color: #fbf9f9;
+}
+  
 header {
     background-color: #333;
     color: white;
@@ -21,15 +26,37 @@ header {
     transition: background-color 0.3s;
 }
 
+.pathfinder-sel button {
+    font-size: 20px;
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .options button:hover {
     background-color: black;
+}
+
+.pathfinder-sel button:hover {
+    background-color: salmon;
 }
 
 .active {
     background-color: black !important;
 }
 
-.slider-container button {
+.active-path {
+    background-color: salmon !important;
+}
+
+.slider-container,
+.btn-div button {
     background-color: black;
     border: none;
     color: white;
@@ -41,7 +68,8 @@ header {
     transition: background-color 0.3s;
 }
 
-.slider-container button:hover {
+.slider-container,
+.btn-div button:hover {
     background-color: grey;
 }
 
@@ -87,4 +115,13 @@ header {
     width: 20px;
     background-color: teal;
     margin: 2px;
+}
+
+.maze {
+    display: flex;
+    border: 3px solid black;
+    margin-top: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
 }
