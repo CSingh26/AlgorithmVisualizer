@@ -1,23 +1,25 @@
-import {
-    bubbleSort
-} from './BubbleSort.js';
-import { selectionSort } from './SelectionSort.js';
-let currentAlgorithm;
+import { Bubble } from './BubbleSort.js';
+import { Heap } from './HeapSort.js'
+import { Insertion } from './InsertionSort.js'
+import { Merge } from './MergeSort.js'
+import { Selection } from './SelectionSort.js';
+import { Quick } from './QuickSort.js';
 
-document.querySelectorAll(".options button").forEach(button => {
-    button.addEventListener('click', function () {
-        document.querySelectorAll(".options button").forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-        currentAlgorithm = this.getAttribute('data-aglo');
-    });
-});
+var inp_as = document.getElementById('elementRange'),
+    array_size = inp_as.value;
+var inp_gen = document.getElementById("genArr");
+var inp_aspeed = document.getElementById("speedRange");
 
-let array_size;
-let div_sizes = [];
-let divs = [];
-let margin_size
-const cont = document.getElementById("sorting-visualizer");
-const inp_as = document.getElementById("elementRange");
+var butts_algos = document.querySelectorAll(".options button");
+
+var div_sizes = [];
+var divs = [];
+var margin_size;
+var cont = document.getElementById("sorting-visualizer");
+cont.style = "flex-direction:row";
+
+inp_gen.addEventListener("click", generate_array);
+inp_as.addEventListener("input", update_array_size);
 
 function generate_array() {
     cont.innerHTML = "";
@@ -25,9 +27,9 @@ function generate_array() {
     for (var i = 0; i < array_size; i++) {
         div_sizes[i] = Math.floor(Math.random() * 0.5 * (inp_as.max - inp_as.min)) + 10;
         divs[i] = document.createElement("div");
-        margin_size = 0.1;
-        divs[i].style = " margin:0% " + margin_size + "%; background-color:blue; width:" + (100 / array_size - (2 * margin_size)) + "%; height:" + div_sizes[i] + "%;";
         cont.appendChild(divs[i]);
+        margin_size = 0.1;
+        divs[i].style = " margin:0% " + margin_size + "%; background-color:blue; width:" + (100 / array_size - (2 * margin_size)) + "%; height:" + (div_sizes[i]) + "%;";
     }
 }
 
@@ -36,58 +38,98 @@ function update_array_size() {
     generate_array();
 }
 
-inp_as.addEventListener("input", update_array_size);
-
 window.onload = update_array_size();
-var speed = 1000
 
-function updateVisuals(divs, div_sizes, index1, index2, action) {
-    const compareColor = "#FFA500"; 
-    const swapColor = "#FF0000"; 
-    const sortedColor = "#00FF00"; 
-    const defaultColor = "#0008080"; 
-
-    if (action === "compare") {
-        divs[index1].style.backgroundColor = compareColor;
-        divs[index2].style.backgroundColor = compareColor;
-    } else if (action === "swap") {
-        let tempHeight = divs[index1].style.height;
-        divs[index1].style.height = divs[index2].style.height;
-        divs[index2].style.height = tempHeight;
-
-        divs[index1].style.backgroundColor = swapColor;
-        divs[index2].style.backgroundColor = swapColor;
-    }
-
-    setTimeout(() => {
-        if (action !== "sorted") {
-            divs[index1].style.backgroundColor = defaultColor;
-            divs[index2].style.backgroundColor = defaultColor;
-        }
-    }, 50); 
+for (var i = 0; i < butts_algos.length; i++) {
+    butts_algos[i].addEventListener("click", runalgo);
 }
 
-document.getElementById('sort').addEventListener('click', async function () {
-    switch (currentAlgorithm) {
-        case 'bubbleSort':
-            await bubbleSort(div_sizes, divs, updateVisuals, getDelayTime(speed.value));
-            break;
-        case 'selectionSort':
-            await selectionSort(div_sizes, divs, updateVisuals, getDelayTime(speed.value))
-            break;
-        case 'quickSort':
-            break;
-        case 'insertionSort':
-            break;
-        case 'heapSort':
-            break;
-        case "mergeSort":
-            break;
-        default:
-            console.log('No sorting algorithm selected');
-    }
-});
+function disable_buttons() {
+    for (var i = 0; i < butts_algos.length; i++) {
+        butts_algos[i].classList = [];
+        butts_algos[i].classList.add("butt_locked");
 
-function getDelayTime(speedVal) {
-    10000/(Math.floor(array_size/10)*speedVal)
+        butts_algos[i].disabled = true;
+        inp_as.disabled = true;
+        inp_gen.disabled = true;
+        inp_aspeed.disabled = true;
+    }
+}
+
+function runalgo() {
+    disable_buttons();
+
+    this.classList.add("butt_selected");
+    switch (this.innerHTML) {
+        case "Bubble Sort":
+            Bubble(array_size, divs, div_sizes, div_update, c_delay, delay_time);
+            enable_buttons(c_delay, delay_time)
+            break;
+        case "Selection Sort":
+            Selection(array_size, divs, div_sizes, div_update, c_delay, delay_time);
+            break;
+        case "Insertion Sort":
+            Insertion(divs, div_sizes, array_size, div_update, delay_time);
+            break;
+        case "Merge Sort":
+            Merge(array_size, divs, div_sizes, div_update, delay_time, c_delay);
+            break;
+        case "Quick Sort":
+            Quick(array_size, divs, div_sizes, div_update, c_delay, delay_time);
+            break;
+        case "Heap Sort":
+            Heap(divs, div_sizes, array_size, div_update, c_delay, delay_time);
+            enable_buttons(c_delay, delay_time)
+            break;
+    }
+}
+
+var speed = 1000;
+
+inp_aspeed.addEventListener("input", vis_speed);
+
+function vis_speed() {
+    var array_speed = inp_aspeed.value;
+    switch (parseInt(array_size, divs, div_sizes, div_update)) {
+        case 1:
+            speed = 1;
+            break;
+        case 2:
+            speed = 10;
+            break;
+        case 3:
+            speed = 100;
+            break;
+        case 4:
+            speed = 1000;
+            break;
+        case 5:
+            speed = 10000;
+            break;
+    }
+
+    delay_time = 10000 / (Math.floor(array_size / 10) * speed);
+}
+
+var delay_time = 10000 / (Math.floor(array_size / 10) * speed);
+var c_delay = 0;
+
+function div_update(cont, height, color, c_delay, delay_time) {
+    window.setTimeout(function () {
+        cont.style = " margin:0% " + margin_size + "%; width:" + (100 / array_size - (2 * margin_size)) + "%; height:" + height + "%; background-color:" + color + ";";
+    }, c_delay += delay_time);
+}
+
+export async function enable_buttons(c_delay, delay_time) {
+    window.setTimeout(function () {
+        for (var i = 0; i < butts_algos.length; i++) {
+            butts_algos[i].classList = [];
+            butts_algos[i].classList.add("butt_unselected");
+
+            butts_algos[i].disabled = false;
+            inp_as.disabled = false;
+            inp_gen.disabled = false;
+            inp_aspeed.disabled = false;
+        }
+    }, c_delay += delay_time);
 }

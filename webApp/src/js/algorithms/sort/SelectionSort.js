@@ -1,27 +1,39 @@
-export async function selectionSort(div_sizes, divs, updateVisuals, delay) {
-    let n = div_sizes.length;
-    const sortedColor = "#00FF00";
-    for (let i = 0; i < n - 1; i++) {
-        let min_idx = i;
-        for (let j = i + 1; j < n; j++) {
-            // Highlight the current and min elements being compared
-            updateVisuals(divs, div_sizes, j, min_idx, "compare");
-            await new Promise(resolve => setTimeout(resolve, delay));
+import { enable_buttons } from "./sorting.js";
 
-            if (div_sizes[j] < div_sizes[min_idx]) {
-                min_idx = j; // Update min_idx to the new minimum element's index
+export async function Selection(array_size, divs, div_sizes, div_update, c_delay, delay_time) {
+    
+    var index_min;
+    for (var i = 0; i < array_size - 1; i++) {
+        div_update(divs[i], div_sizes[i], "red". c_delay, delay_time);
+
+        index_min = i;
+
+        for (var j = i + 1; j < array_size; j++) {
+            div_update(divs[j], div_sizes[j], "yellow", c_delay, delay_time);
+
+            if (div_sizes[j] < div_sizes[index_min]) {
+                if (index_min != i) {
+                    div_update(divs[index_min], div_sizes[index_min], "blue", c_delay, delay_time);
+                }
+                index_min = j;
+                div_update(divs[index_min], div_sizes[index_min], "red", c_delay, delay_time);
+            } else {
+                div_update(divs[j], div_sizes[j], "blue");
             }
         }
-        // Swap if the minimum is not the position i
-        if (min_idx !== i) {
-            let temp = div_sizes[i];
-            div_sizes[i] = div_sizes[min_idx];
-            div_sizes[min_idx] = temp;
-            
-            // Visual update for the swap
-            updateVisuals(divs, div_sizes, i, min_idx, "swap");
-            await new Promise(resolve => setTimeout(resolve, delay));
+
+        if (index_min != i) {
+            var temp = div_sizes[index_min];
+            div_sizes[index_min] = div_sizes[i];
+            div_sizes[i] = temp;
+
+            div_update(divs[index_min], div_sizes[index_min], "red");
+            div_update(divs[i], div_sizes[i], "red");
+            div_update(divs[index_min], div_sizes[index_min], "blue");
         }
+        div_update(divs[i], div_sizes[i], "green", c_delay, delay_time);
     }
-    divs.forEach(div => div.style.backgroundColor = sortedColor);
+    div_update(divs[i], div_sizes[i], "green", c_delay, delay_time);
+
+    enable_buttons(c_delay, delay_time);
 }
