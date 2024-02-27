@@ -9,8 +9,8 @@ document.querySelectorAll(".pathfinder-sel button").forEach(button => {
     });
 });
 
-let maze = document.querySelector(".maze");
-let ctx = maze.getContext("2d");
+const maze = document.querySelector(".maze");
+const ctx = maze.getContext("2d");
 let generationComplete = false;
 
 let current;
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 switch (algo) {
                     case 'Astar':
                         console.log('A* algorithm selected');
-                        await Astar(startNode, endNode, maze1.grid, maze1)
+                        await Astar(startNode, endNode, maze1.grid)
                         break;
                     case 'dijkstra':
                         console.log('Dijkstra algorithm selected');
