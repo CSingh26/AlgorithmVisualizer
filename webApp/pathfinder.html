@@ -15,8 +15,8 @@
     <header>
         <nav class="navbar">
             <div class="pathfinder-sel">
-                <button id="a-star">Astar Algorithm</button>
-                <button id="dijkstra">Dijkstra</button>
+                <button data-algo="Astar" id="a-star">Astar Algorithm</button>
+                <button data-algo="dijkstra" id="dijkstra">Dijkstra</button>
             </div>
             <div class="btn-div">
                 <button id="maze">Generate Maze</button>
@@ -27,7 +27,10 @@
     <div class="container">
         <canvas class="maze"></canvas>
     </div>
-    <script src="./src/js/algorithms/pathfindings/pathfinder.js"></script>
+    <script type="module" src="./src/js/algorithms/pathfindings/pathfinder.js"></script>
+    <script type="module" src="./src/js/algorithms/pathfindings/AStar.js"></script>
+    <script type="module" src="./src/js/algorithms/pathfindings/Dijkstra.js"></script>
+    
 </body>
 
 </html>
