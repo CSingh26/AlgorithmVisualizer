@@ -84,7 +84,9 @@ class Cell {
     constructor(rowNum, colNum, parentGrid, parentSize) {
         this.rowNum = rowNum;
         this.colNum = colNum;
-        this.visited = false;
+        this.visited = false; 
+        this.distance = Infinity; 
+        this.previous = null; 
         this.walls = {
             topWall: true,
             rightWall: true,
@@ -274,11 +276,16 @@ class Cell {
     centerY() {
         return (this.rowNum + 0.5) * (this.parentSize / this.parentGrid.length);
     }
+
+    updateDistanceAndPrevious(newDist, prevCell) {
+        this.distance = newDist;
+        this.previous = prevCell;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     function generateMaze() {
-        maze1 = new Maze(250, 25, 25);
+        maze1 = new Maze(700, 30, 30);
         maze1.setup();
         maze1.draw();
     }
@@ -302,9 +309,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     case 'Astar':
                         console.log('A* algorithm selected');
                         await Astar(startNode, endNode, maze1.grid)
-                        break;
-                    case 'dijkstra':
-                        console.log('Dijkstra algorithm selected');
                         break;
                     default:
                         console.log('No algorithm selected');

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+.amatic-sc-regular {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .amatic-sc-bold {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+* {
+    font-family: "Amatic Sc";
+    font-weight: 700;
+}
+
+.pathfinder-h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-top: -10px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: #978BE2;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    background-color: rgba(245, 245, 220, 0.5);
+    border-radius: 15px;
+    width: 700px;
+    height: 150px;
+    margin-top: -20px;
+    
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pathfinder-sel button {
+    font-size: 30px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 0px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background-color: azure;
+    margin-top: 10px;
+}
+
+.active-path {
+    background-color: salmon !important;
+}
+
+.pathfinder-sel button:hover {
+    background-color: rgba(250, 128, 114, 0.75)
+}
+
+.btn-div button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-div button:hover {
+    background-color: grey;
+}
+
+.maze {
+    display: flex;
+    border: 3px solid red;
+    width: 700px;
+    height: 600px;
+    background-color: black;
+    margin-top: -25px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px; 
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+.home button {
+    width: 200px;
+    height: 50px;
+    background-color: salmon;
+    border-radius: 10px;
+    font-size: 20px;
+}
