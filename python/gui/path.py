@@ -7,7 +7,7 @@ class Path:
         self.show_main_callback = show_main_callback
         self.root.title("Pathfinder Visualizer")
         self.root.geometry("1000x700")
-        
+
         self.root.configure(background='sky blue')
 
         self.homeButton = ttk.Button(root, text="BackHome", command=self.homeWindow)
@@ -21,3 +21,11 @@ class Path:
         self.root.destroy()
         self.show_main_callback()
         
+
+def main():
+    root = tk.Tk()
+    app = Path(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
