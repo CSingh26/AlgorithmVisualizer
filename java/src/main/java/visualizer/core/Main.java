@@ -30,6 +30,14 @@ public class Main extends JFrame{
         mainPanel.add(pathButton);
 
         this.getContentPane().add(mainPanel);
+
+        sortButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new SortingVisualizer().setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {

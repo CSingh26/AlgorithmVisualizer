@@ -4,14 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import main.java.visualizer.core.BarGraphPanel;
 
-public class SortingVisualizer extends JFrame{
+public class SortingVisualizer extends JFrame {
 
-    private JPanel rightPanel, leftPanel;
+    private JPanel rightPanel, leftPanel, paddedLeftPanel;
     private JSlider arrSize, timeReq;
     private JButton bubbleSort, mergeSort, insertionSort, selectionSort, heapSort, quickSort;
     private JButton genArr, backHome;
     private JLabel heading1, arrSizeLabel, timeLabel;
+    BarGraphPanel bar;
 
     public SortingVisualizer() {
         initializeUI();
@@ -22,8 +24,17 @@ public class SortingVisualizer extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); 
 
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BorderLayout());
+
         leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+
+        rightPanel = new JPanel(new BorderLayout());
+        int[] example = {100, 40, 70, 30, 55};
+        bar = new BarGraphPanel(example);
+        rightPanel.add(bar, BorderLayout.CENTER);
+        add(rightPanel, BorderLayout.CENTER);
 
         bubbleSort = new JButton("Bubble Sort");
         mergeSort = new JButton("Merge Sort");
@@ -39,29 +50,70 @@ public class SortingVisualizer extends JFrame{
         arrSizeLabel = new JLabel("Array Size");
         timeLabel = new JLabel("Speed");
 
+        heading1 = new JLabel("Welcome to Sorting Visualizer", SwingConstants.CENTER);
+        contentPane.add(heading1, BorderLayout.NORTH);
+
+        leftPanel.add(Box.createVerticalGlue());
+
         leftPanel.add(arrSizeLabel);
         leftPanel.add(arrSize);
+        addSpacing(leftPanel);
         leftPanel.add(timeLabel);
         leftPanel.add(timeReq);
+        addSpacing(leftPanel);
         leftPanel.add(genArr);
+        addSpacing(leftPanel);
         leftPanel.add(bubbleSort);
+        addSpacing(leftPanel);
         leftPanel.add(mergeSort);
+        addSpacing(leftPanel);
         leftPanel.add(selectionSort);
+        addSpacing(leftPanel);
         leftPanel.add(insertionSort);
+        addSpacing(leftPanel);
         leftPanel.add(heapSort);
+        addSpacing(leftPanel);
         leftPanel.add(quickSort);
 
-        heading1 = new JLabel("Welcome to Sorting Visualizer", SwingConstants.CENTER);
-        add(heading1, BorderLayout.NORTH);
+        leftPanel.add(Box.createVerticalGlue());
 
-        add(leftPanel, BorderLayout.WEST);
+        paddedLeftPanel = new JPanel(new BorderLayout());
+        paddedLeftPanel.add(leftPanel, BorderLayout.CENTER);
+        paddedLeftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); 
+
+        contentPane.add(paddedLeftPanel, BorderLayout.WEST);
 
         backHome = new JButton("Back to Home");
         backHome.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(backHome, BorderLayout.SOUTH);
+        contentPane.add(backHome, BorderLayout.SOUTH);
+
+        setupListeners();
 
         setVisible(true);
+    }
+    
+    private void addSpacing(JPanel panel) {
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+    }
 
+    private void setupListeners() {
+        backHome.addActionListener(e -> {
+            dispose();
+            new Main().setVisible(true);
+        });
+
+        genArr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int size = arrSize.getValue();
+                
+                int[] newArray = new int[size];
+                for (int i = 0; i < size; i++) {
+                    newArray[i] = (int) (Math.random() * bar.getHeight()); // Replace 'height' with the max value for the bars
+                }
+                bar.setValues(newArray);
+            }
+        });        
     }
 
     public static void main(String[] args) {
