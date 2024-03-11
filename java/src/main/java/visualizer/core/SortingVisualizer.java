@@ -5,6 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import main.java.visualizer.core.BarGraphPanel;
+import main.java.visualizer.algorithms.sorting.BubbleSort;
+import main.java.visualizer.algorithms.sorting.HeapSort;
+import main.java.visualizer.algorithms.sorting.InsertionSort;
+import main.java.visualizer.algorithms.sorting.MergeSort;
+import main.java.visualizer.algorithms.sorting.QuickSort;
+import main.java.visualizer.algorithms.sorting.SelectionSort;
 
 public class SortingVisualizer extends JFrame {
 
@@ -113,7 +119,80 @@ public class SortingVisualizer extends JFrame {
                 }
                 bar.setValues(newArray);
             }
-        });        
+        });  
+        
+        heapSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HeapSort heapSorter = new HeapSort(bar); 
+                new Thread(new Runnable() {
+                    public void run() {
+                        heapSorter.sort();
+                    }
+                }).start();
+            }
+        });
+
+        bubbleSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BubbleSort bubbleSorter = new BubbleSort(bar);
+                new Thread(new Runnable() {
+                    public void run() {
+                        bubbleSorter.sort();
+                    }
+                }).start();
+            }
+        });
+
+        insertionSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InsertionSort insertionSorter = new InsertionSort(bar);
+                new Thread(new Runnable() {
+                    public void run() {
+                        insertionSorter.sort();
+                    }
+                }).start();
+            }
+        });
+
+        selectionSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SelectionSort selectionSorter = new SelectionSort(bar);
+                new Thread(new Runnable() {
+                    public void run() {
+                        selectionSorter.sort();
+                    }
+                }).start();
+            }
+        });
+
+        quickSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                QuickSort quickSorter = new QuickSort(bar);
+                new Thread(new Runnable() {
+                    public void run() {
+                        quickSorter.sort();
+                    }
+                }).start();
+            }
+        });
+
+        mergeSort.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MergeSort mergeSorter = new MergeSort(bar); 
+                new Thread(new Runnable() {
+                    public void run() {
+                        mergeSorter.sort();;
+                    }
+                }).start();
+            }
+        });
+
     }
 
     public static void main(String[] args) {
