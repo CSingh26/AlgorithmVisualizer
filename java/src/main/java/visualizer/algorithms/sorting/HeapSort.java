@@ -4,9 +4,11 @@ import main.java.visualizer.core.BarGraphPanel;
 
 public class HeapSort {
     private BarGraphPanel barGraphPanel;
+    private int delay;
 
-    public HeapSort(BarGraphPanel barGraphPanel) {
+    public HeapSort(BarGraphPanel barGraphPanel, int timeDelay) {
         this.barGraphPanel = barGraphPanel;
+        this.delay = (11 - timeDelay) * 100;
     }
 
     private void heapify(int n, int i) {
@@ -35,7 +37,7 @@ public class HeapSort {
         barGraphPanel.setValues(arr); 
         barGraphPanel.repaint(); 
         try {
-            Thread.sleep(100); 
+            Thread.sleep(delay); 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

@@ -3,9 +3,11 @@ import main.java.visualizer.core.BarGraphPanel;
 
 public class SelectionSort {
     private BarGraphPanel barGraphPanel;
+    private int delay;
 
-    public SelectionSort(BarGraphPanel barGraphPanel) {
+    public SelectionSort(BarGraphPanel barGraphPanel, int delayTime) {
         this.barGraphPanel = barGraphPanel;
+        this.delay = (11 - delayTime) * 100;
     }
 
     public void sort() {
@@ -28,7 +30,7 @@ public class SelectionSort {
 
     private void sleep() {
         try {
-            Thread.sleep(100);
+            Thread.sleep(delay);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

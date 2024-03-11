@@ -3,9 +3,11 @@ import main.java.visualizer.core.BarGraphPanel;
 
 public class QuickSort {
     private BarGraphPanel barGraphPanel;
+    private int delay;
 
-    public QuickSort(BarGraphPanel barGraphPanel) {
+    public QuickSort(BarGraphPanel barGraphPanel, int timeDelay) {
         this.barGraphPanel = barGraphPanel;
+        this.delay = (11 - timeDelay) * 100;
     }
 
     public void sort() {
@@ -48,7 +50,7 @@ public class QuickSort {
     private void updateAndSleep() {
         barGraphPanel.repaint();
         try {
-            Thread.sleep(100); // Adjust this delay to control the visualization speed
+            Thread.sleep(delay); // Adjust this delay to control the visualization speed
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

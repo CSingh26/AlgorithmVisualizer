@@ -50,8 +50,17 @@ public class SortingVisualizer extends JFrame {
         selectionSort = new JButton("Selection Sort");
         genArr = new JButton("Generate New Array");
 
-        arrSize = new JSlider(10, 200, 175);
-        timeReq = new JSlider(1, 5);
+        arrSize = new JSlider(10, 200, 190);
+        arrSize.setMajorTickSpacing(20);
+        arrSize.setMinorTickSpacing(10);
+        arrSize.setPaintTicks(true);
+        arrSize.setPaintLabels(true);
+        
+        timeReq = new JSlider(1, 10);
+        timeReq.setMajorTickSpacing(2);
+        timeReq.setMinorTickSpacing(1);
+        timeReq.setPaintTicks(true);
+        timeReq.setPaintLabels(true);
 
         arrSizeLabel = new JLabel("Array Size");
         timeLabel = new JLabel("Speed");
@@ -124,7 +133,7 @@ public class SortingVisualizer extends JFrame {
         heapSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HeapSort heapSorter = new HeapSort(bar); 
+                HeapSort heapSorter = new HeapSort(bar, timeReq.getValue()); 
                 new Thread(new Runnable() {
                     public void run() {
                         heapSorter.sort();
@@ -136,7 +145,7 @@ public class SortingVisualizer extends JFrame {
         bubbleSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BubbleSort bubbleSorter = new BubbleSort(bar);
+                BubbleSort bubbleSorter = new BubbleSort(bar, timeReq.getValue());
                 new Thread(new Runnable() {
                     public void run() {
                         bubbleSorter.sort();
@@ -148,7 +157,7 @@ public class SortingVisualizer extends JFrame {
         insertionSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InsertionSort insertionSorter = new InsertionSort(bar);
+                InsertionSort insertionSorter = new InsertionSort(bar, timeReq.getValue());
                 new Thread(new Runnable() {
                     public void run() {
                         insertionSorter.sort();
@@ -160,7 +169,7 @@ public class SortingVisualizer extends JFrame {
         selectionSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SelectionSort selectionSorter = new SelectionSort(bar);
+                SelectionSort selectionSorter = new SelectionSort(bar, timeReq.getValue());
                 new Thread(new Runnable() {
                     public void run() {
                         selectionSorter.sort();
@@ -172,7 +181,7 @@ public class SortingVisualizer extends JFrame {
         quickSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                QuickSort quickSorter = new QuickSort(bar);
+                QuickSort quickSorter = new QuickSort(bar, timeReq.getValue());
                 new Thread(new Runnable() {
                     public void run() {
                         quickSorter.sort();
@@ -184,7 +193,7 @@ public class SortingVisualizer extends JFrame {
         mergeSort.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MergeSort mergeSorter = new MergeSort(bar); 
+                MergeSort mergeSorter = new MergeSort(bar, timeReq.getValue()); 
                 new Thread(new Runnable() {
                     public void run() {
                         mergeSorter.sort();;

@@ -4,9 +4,11 @@ import main.java.visualizer.core.BarGraphPanel;
 
 public class MergeSort {
     private BarGraphPanel barGraphPanel;
+    private int delay;
 
-    public MergeSort(BarGraphPanel barGraphPanel) {
+    public MergeSort(BarGraphPanel barGraphPanel, int timeDelay) {
         this.barGraphPanel = barGraphPanel;
+        this.delay = (11 - timeDelay) * 100;
     }
 
     public void sort() {
@@ -86,7 +88,7 @@ public class MergeSort {
 
     private void sleepForAnimation() {
         try {
-            Thread.sleep(100); // Small delay for visualization
+            Thread.sleep(delay); // Small delay for visualization
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
