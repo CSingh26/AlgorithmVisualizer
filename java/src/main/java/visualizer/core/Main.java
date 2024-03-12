@@ -38,6 +38,14 @@ public class Main extends JFrame{
                 new SortingVisualizer().setVisible(true);
             }
         });
+
+        pathButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new Pathfinding().setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {
